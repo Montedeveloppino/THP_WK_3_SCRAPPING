@@ -7,8 +7,13 @@ GEM
     dotenv (2.7.6)
     jaro_winkler (1.5.4)
     method_source (1.0.0)
+    mini_portile2 (2.5.0)
+    nokogiri (1.11.1)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
     nokogiri (1.11.1-x86_64-darwin)
       racc (~> 1.4)
+    open-uri (0.1.0)
     parallel (1.20.1)
     parser (3.0.0.0)
       ast (~> 2.4.1)
@@ -49,6 +54,7 @@ PLATFORMS
 DEPENDENCIES
   dotenv
   nokogiri
+  open-uri
   pry
   rspec
   rubocop (~> 0.57.2)
