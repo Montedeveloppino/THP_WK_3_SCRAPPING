@@ -1,5 +1,4 @@
-require 'rubygems'
-require 'nokogiri'  
+require 'nokogiri'
 require 'open-uri'
 
 def scrapper
