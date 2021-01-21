@@ -5,7 +5,4 @@ gem 'rspec'
 gem 'pry'
 gem 'dotenv'
 gem 'nokogiri'
-<<<<<<< HEAD
-=======
 gem 'open-uri'
->>>>>>> f2d48b55dd0845925fad62a091565302e454ac65
