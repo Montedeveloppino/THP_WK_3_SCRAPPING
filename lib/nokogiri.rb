@@ -5,8 +5,6 @@ def scrapper
   page = Nokogiri::HTML(URI.open("https://coinmarketcap.com/all/views/all/"))
 end
 
-
-
 def crypto(page)
   array_name = []
   array_value = []
