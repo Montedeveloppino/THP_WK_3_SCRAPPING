@@ -1,7 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
 require 'rubygems'
-
 $principal_adress="http://annuaire-des-mairies.com"
 
 def scrapper
