@@ -7,9 +7,9 @@ def scrapper
    return doc = Nokogiri::HTML(URI.open('http://annuaire-des-mairies.com/val-d-oise.html'))
 end
 
-def get_mail(array_final,array_link)
+def get_mail(array_final,array_of_link)
   puts "CA VA PRENDRE UN PETIT PEU DE TEMPS"
-    array_link.each{|link|
+    array_of_link.each{|link|
     pages=Nokogiri::HTML(URI.open($principal_adress+link))
     mail = pages.xpath('//section[2]//tr[4]/td[2]').text
     array_final << mail
@@ -31,13 +31,13 @@ def mairie(page)
     links.each{|link|
         array_of_name<<link.text
     }
-    #j'enléve celui qui à rien a faire dedans
+    #j'enlève celui qui à rien a faire dedans
     array_of_name.delete("Plan du site")
 
     links.each{|link|
     array_of_link<<link['href']
     }
-    #j'enléve l'adresse qui n'a rien à faire là
+    #j'enlève l'adresse qui n'a rien à faire là
     array_of_link.delete("plan-du-site.html")
     #j'enléve tout les . devant l'adresse pour l'avoir épurer
     for i in 0..array_of_link.length-1
