@@ -1,14 +1,18 @@
 require 'nokogiri'
 require 'open-uri'
 require 'rubygems'
+
+#Adresse web initiale ////
+
 $principal_adress="http://annuaire-des-mairies.com"
 
+# Scrapper
 def scrapper
    return doc = Nokogiri::HTML(URI.open('http://annuaire-des-mairies.com/val-d-oise.html'))
 end
-
+# Création d'array_final
 def get_mail(array_final,array_of_link)
-  puts "CA VA PRENDRE UN PETIT PEU DE TEMPS"
+  puts "CA VA PRENDRE UN PETIT PEU DE TEMPS, MAIS ÇA VIENT!"
     array_of_link.each{|link|
     pages=Nokogiri::HTML(URI.open($principal_adress+link))
     mail = pages.xpath('//section[2]//tr[4]/td[2]').text
@@ -37,9 +41,10 @@ def mairie(page)
     links.each{|link|
     array_of_link<<link['href']
     }
-    #j'enlève l'adresse qui n'a rien à faire là
+    #le dernier print ne doit pas être inclu, ici il est supprimé
     array_of_link.delete("plan-du-site.html")
-    #j'enléve tout les . devant l'adresse pour l'avoir épurer
+    
+    #j'enlève tout les "." devant l'adresse pour épurer
     for i in 0..array_of_link.length-1
         array_of_link[i][0]=array_of_link[i][0].delete(".")
     end
