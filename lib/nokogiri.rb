@@ -1,15 +1,31 @@
-require 'rubygems'
-require 'nokogiri'  
+require 'nokogiri'
 require 'open-uri'
 
-url = "https://coinmarketcap.com/"
-  unparsed = URI.open(url)
-  parsed = Nokogiri::HTML(unparsed)
+def scrapper
+  page = Nokogiri::HTML(URI.open("https://coinmarketcap.com/all/views/all/"))
+end
 
-  liens = parsed.xpath('//*[@id="__next"]/div/div[2]/div/div/div[2]/table/tbody/tr[1]/td[3]/a/div/div/div/p')
-  liens2 = parsed.xpath('//*[@id="__next"]/div/div[2]/div/div/div[2]/table/tbody/tr[2]/td[3]/a/div/div/div/p')
-  liens3 = parsed.xpath('//*[@id="__next"]/div/div[2]/div/div/div[2]/table/tbody/tr[3]/td[3]/a/div/div/div/p')
-  puts liens.text
-  puts liens2.text
-  puts liens3.text
 
+
+def crypto(page)
+  array_name = []
+  array_value = []
+  name_of_crypto = page.xpath('//tr//td[3]')
+  value_of_crypto = page.xpath('//tr//td[5]')
+
+  name_of_crypto.each do |name|
+    array_name << name.text
+  end
+  value_of_crypto.each do |value|
+    array_value << value.text
+  end
+
+  array_value_of_crypto = array_value.map { |word| word.gsub('$', '') }
+  mon_hash = Hash[array_name.zip array_value_of_crypto]
+
+  mon_hash.each do |name , value|
+      final_crypto = {name => value.delete(',').to_f}
+      puts [final_crypto]
+  end
+end
+crypto(scrapper)
